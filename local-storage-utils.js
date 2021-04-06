@@ -4,8 +4,8 @@ import { findById } from './utils.js';
 const POKEDEX = 'POKEDEX';
 
 //this localStorage POKEDEX, parses, and returns
-export function getPokedex(){
-    const stringyPokedex = localStorage.getItem(POKEDEX);
+export function getPokedex(storageKey){
+    const stringyPokedex = localStorage.getItem(storageKey);
     if (!stringyPokedex)
         return [];
     else return JSON.parse(stringyPokedex);
@@ -19,7 +19,7 @@ export function setPokedex(parsedPokedex){
 
 export function encounterPokemon(pokemon){
     // get access to the pokedex in local storage
-    const pokedex = getPokedex();
+    const pokedex = getPokedex(POKEDEX);
     const matchingStoragePokemon = findById(pokedex, pokemon.pokemon);
     if (matchingStoragePokemon){
         matchingStoragePokemon.encountered++;
@@ -32,11 +32,11 @@ export function encounterPokemon(pokemon){
         pokedex.push(newStoragePokemon);
     }
     setPokedex(pokedex);
-    return pokedex; //why do we need to do this?
+    return pokedex;
 }
 
 export function capturePokemon(pokemon){
-    const pokedex = getPokedex(); //get access to the pokedex
+    const pokedex = getPokedex(POKEDEX); //get access to the pokedex
     const matchingStoragePokemon = findById(pokedex, pokemon.pokemon); //find our pokemon in the pokedex
     matchingStoragePokemon.captured++; //increment the capture value
     setPokedex(pokedex); //save it
