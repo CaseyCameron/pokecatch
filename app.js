@@ -3,6 +3,7 @@ import { capturePokemon } from './local-storage-utils.js';
 import { findPokemonName } from './utils.js';
 
 const button = document.querySelector('.button');
+let captures = 0;
 
 function renderPokemonToDOM(){
     const radio1 = document.querySelector('#pokemon1-radio');
@@ -34,8 +35,13 @@ function displayPokemon(image, label, radio, id, name){
 }
 
 button.addEventListener('click', () => {
+    captures++;
+    console.log(captures);
     const selectedRadio = document.querySelector('input:checked');
     const selectedPokemon = findPokemonName(selectedRadio.value);
     capturePokemon(selectedPokemon);
+    if (captures >= 10){
+        window.location.href = '../results/index.html';
+    }
     renderPokemonToDOM();
 });
