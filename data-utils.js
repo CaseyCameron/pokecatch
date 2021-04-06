@@ -1,4 +1,5 @@
 import pokemonArray from './data.js';
+import { encounterPokemon } from './local-storage-utils.js';
 
 export function generateThreePokemon(){
     let randomArray = getRandomPokemonArray();
@@ -9,14 +10,19 @@ export function generateThreePokemon(){
     ){ //while they aren't unique, get new numbers
         randomArray = getRandomPokemonArray();
     }
-    //use the random numbers to increment the encountered value for pokemon
-    //NEED CODE HERE
+    const pokemon1 = pokemonArray[randomArray[0]];
+    const pokemon2 = pokemonArray[randomArray[1]];
+    const pokemon3 = pokemonArray[randomArray[2]];
 
-    return randomArray;
+    encounterPokemon(pokemon1);
+    encounterPokemon(pokemon2);
+    encounterPokemon(pokemon3);
+
+    return [pokemon1, pokemon2, pokemon3];
 }
 
 function getRandomPokemon(){ //get 3 random pokemon
-    return Math.floor(Math.random() * pokemonArray.length);
+    return Math.floor(Math.random() * pokemonArray.length); //is it okay to generate 0? This happens.
 }
 
 function getRandomPokemonArray(){ //get 3 random numbers
@@ -24,10 +30,3 @@ function getRandomPokemonArray(){ //get 3 random numbers
     for (let item of randomArray) randomArray[item] = getRandomPokemon();
     return randomArray;
 }
-
-    //attempt to check for duplicates in an array
-    //check to see if any of these numbers are duplicates
-    // if (randomArray.indexOf(randomArray[2]) !== -1){
-    //     console.log(randomArray + ' success!');
-    // } else console.log(randomArray + ' failure!');
-    // const duplicateCheck = randomArray.some((val, i) => randomArray.indexOf(val) !== 1);
