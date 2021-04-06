@@ -78,7 +78,7 @@ forAnyPokemonObject {
         - const stringyPokedex = JSON.stringify(parsedPokedex)
         - localStorage.setItem(POKEDEX, stringyPokedex)
     - encounterPokemon(pokemon)
-        - const pokedex = getPokedex(); //we've encoutner a poke so stringify it
+        - const pokedex = getPokedex(); //we've encoutnered a poke so stringify it
         - const matchingPokedexItem = findById(pokedex, pokemon,pokemon) // find it by sending the parsed localStorage and match it with a pokemon object
         - if(matchingPokedexItem)
             - matchingPOkedexItem.encounter++; //increment encountered
