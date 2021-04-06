@@ -4,20 +4,23 @@ import { getPokedex } from '../local-storage-utils.js';
 const ul = document.querySelector('.pokemon-results');
 const button = document.querySelector('.button-reset');
 const pokedex = getPokedex();
+var ctx = document.getElementById('myChart').getContext('2d');
+
+const names = [];
+const captured = [];
+const encountered = [];
+
 for (let item of pokedex){
     const li = generatePokemonResults(item);
     ul.append(li);
+    names.push(item.id);
+    encountered.push(item.encountered);
+    captured.push(item.captured);
 }
-//const pokemonImage = findPokemonName(pokedex.url_image);
 
 export function generatePokemonResults(pokemon){
-
     const li = document.createElement('li');
     li.classList.add('pokemon');
-
-    // const image = document.createElement('img');
-    // image.classList.add('image');
-    //image.src = pokemonImage;
 
     const pName = document.createElement('p');
     pName.classList.add('name');
@@ -34,6 +37,36 @@ export function generatePokemonResults(pokemon){
     li.append(pName, pEncountered, pCaptured);
     return li;
 }
+
+var myChart = new Chart(ctx, { // eslint-disable-line
+    type: 'bar',
+    data: {
+        labels: names,
+        datasets: [
+            {
+                label: 'Pokemon captured',
+                data: encountered,
+                backgroundColor: 'lightblue',
+                borderColor: 'steelblue',
+                borderWidth: 1
+            },
+            {
+                label: 'Pokemon encountered',
+                data: captured,
+                backgroundColor: 'yellow',
+                borderColor: 'steelblue',
+                borderWidth: 2
+            }
+        ]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
 button.addEventListener('click', () => {
     //put our cart into a variable
