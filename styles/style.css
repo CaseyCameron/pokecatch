@@ -63,6 +63,10 @@ footer {
     box-shadow: var(--shadow);
 }
 
+img{
+    width: 50%;
+    height: 50%;
+}
 
 h2 {
     font-size: 1.8rem;

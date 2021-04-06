@@ -3,14 +3,14 @@ import { findById } from './utils.js';
 //create the key name for the local storage
 const POKEDEX = 'POKEDEX';
 
-//this stringifies localStorage POKEDEX, parses, and returns
+//this localStorage POKEDEX, parses, and returns
 export function getPokedex(){
-    //stringify
+    //get the POKEDEX entry in localStorage
     const stringyPokedex = localStorage.getItem(POKEDEX);
     //if empty
     if (!stringyPokedex)
         return [];
-    // if not empty, parse stringyPokedex and return
+    // if not empty, parse the Pokedex (which is a string) and return an object
     else return JSON.parse(stringyPokedex);
 }
 
