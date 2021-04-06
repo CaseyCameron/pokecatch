@@ -1,4 +1,8 @@
 import { generateThreePokemon } from './data-utils.js';
+import { capturePokemon } from './local-storage-utils.js';
+import { findPokemonName } from './utils.js';
+
+const button = document.querySelector('.button');
 
 function renderPokemonToDOM(){
     const radio1 = document.querySelector('#pokemon1-radio');
@@ -15,16 +19,23 @@ function renderPokemonToDOM(){
     const name3 = document.querySelector('#pokemon3-name');
 
     const generatedPokemon = generateThreePokemon();
-    displayPokemonImage(img1, label1, radio1, generatedPokemon[0], name1);
-    displayPokemonImage(img2, label2, radio2, generatedPokemon[1], name2);
-    displayPokemonImage(img3, label3, radio3, generatedPokemon[2], name3);
+    displayPokemon(img1, label1, radio1, generatedPokemon[0], name1);
+    displayPokemon(img2, label2, radio2, generatedPokemon[1], name2);
+    displayPokemon(img3, label3, radio3, generatedPokemon[2], name3);
 }
 
 renderPokemonToDOM();
 
-function displayPokemonImage(image, label, radio, id, name){
+function displayPokemon(image, label, radio, id, name){
     image.src = id.url_image;
     label.append(image);
     radio.value = id.pokemon;
     name.textContent = radio.value;
 }
+
+button.addEventListener('click', () => {
+    const selectedRadio = document.querySelector('input:checked');
+    const selectedPokemon = findPokemonName(selectedRadio.value);
+    capturePokemon(selectedPokemon);
+    renderPokemonToDOM();
+});
