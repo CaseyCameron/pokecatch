@@ -127,6 +127,11 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+hr {
+    border: 5px solid black;
+    width: 100%;
+}
   
   @keyframes pulse {
     20% {
