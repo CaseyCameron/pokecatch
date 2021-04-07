@@ -36,7 +36,6 @@ function displayPokemon(image, label, radio, id, name){
 
 button.addEventListener('click', () => {
     captures++;
-    console.log(captures);
     const selectedRadio = document.querySelector('input:checked');
     const selectedPokemon = findPokemonName(selectedRadio.value);
     capturePokemon(selectedPokemon);

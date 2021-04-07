@@ -3,7 +3,7 @@ import { getPokedex } from '../local-storage-utils.js';
 
 const ul = document.querySelector('.pokemon-results');
 const button = document.querySelector('.button-reset');
-const pokedex = getPokedex();
+const pokedex = getPokedex('POKEDEX');
 var ctx = document.getElementById('myChart').getContext('2d');
 
 const names = [];
@@ -44,14 +44,14 @@ var myChart = new Chart(ctx, { // eslint-disable-line
         labels: names,
         datasets: [
             {
-                label: 'Pokemon captured',
+                label: 'Pokemon encountered',
                 data: encountered,
                 backgroundColor: 'lightblue',
                 borderColor: 'steelblue',
                 borderWidth: 1
             },
             {
-                label: 'Pokemon encountered',
+                label: 'Pokemon captured',
                 data: captured,
                 backgroundColor: 'yellow',
                 borderColor: 'steelblue',
@@ -70,7 +70,7 @@ var myChart = new Chart(ctx, { // eslint-disable-line
 
 button.addEventListener('click', () => {
     //put our cart into a variable
-    const pokedex = getPokedex();
+    const pokedex = getPokedex('POKEDEX');
     //alert the user
     alert(JSON.stringify(pokedex));
     localStorage.clear();
