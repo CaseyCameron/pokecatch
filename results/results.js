@@ -73,6 +73,6 @@ button.addEventListener('click', () => {
     const pokedex = getPokedex('POKEDEX');
     //alert the user
     alert(JSON.stringify(pokedex));
-    localStorage.clear(pokedex);
+    localStorage.clear();
     window.location.href = '../index.html';
 });
