@@ -40,7 +40,7 @@ button.addEventListener('click', () => {
     const selectedPokemon = findPokemonName(selectedRadio.value);
     capturePokemon(selectedPokemon);
     if (captures >= 10){
-        window.location.href = '../results/index.html';
+        window.location = './results/index.html';
     }
     renderPokemonToDOM();
 });
