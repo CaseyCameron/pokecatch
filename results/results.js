@@ -74,5 +74,5 @@ button.addEventListener('click', () => {
     //alert the user
     alert(JSON.stringify(pokedex));
     localStorage.clear();
-    window.location.href = '/index.html';
+    window.location = '/index.html';
 });
