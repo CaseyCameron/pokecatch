@@ -27,7 +27,11 @@ export function encounterPokemon(pokemon){
         const newStoragePokemon = {
             id: pokemon.pokemon,
             captured: 0,
-            encountered: 1
+            encountered: 1,
+            hp: pokemon.hp,
+            speed: pokemon.speed,
+            attack: pokemon.attack,
+            defense: pokemon.defense
         };
         pokedex.push(newStoragePokemon);
     }

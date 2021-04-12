@@ -33,6 +33,11 @@ section {
     border: solid 2px var(--color1);
 }
 
+canvas{
+    height: 50%;
+    width: 50%;
+}
+
 .results-section {
     width: 1000px;
     max-width: 80%;
