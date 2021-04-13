@@ -8,6 +8,8 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var statChartX = document.getElementById('statChart').getContext('2d');
 var combatChartX = document.getElementById('combatChart').getContext('2d');
 
+//addToPersistentStorage();
+
 const names = [];
 const captured = [];
 const encountered = [];

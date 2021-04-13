@@ -12,9 +12,9 @@ export function getPokedex(storageKey){
 }
 
 //this takes the parsed pokedex and turns it into a string so we can save it into localStorage
-export function setPokedex(parsedPokedex){
+export function setPokedex(parsedPokedex, pokeKey){
     const stringyPokedex = JSON.stringify(parsedPokedex);
-    localStorage.setItem(POKEDEX, stringyPokedex);
+    localStorage.setItem(pokeKey, stringyPokedex);
 }
 
 export function encounterPokemon(pokemon){
@@ -35,7 +35,7 @@ export function encounterPokemon(pokemon){
         };
         pokedex.push(newStoragePokemon);
     }
-    setPokedex(pokedex);
+    setPokedex(pokedex, POKEDEX);
     return pokedex;
 }
 
@@ -43,6 +43,18 @@ export function capturePokemon(pokemon){
     const pokedex = getPokedex(POKEDEX); //get access to the pokedex
     const matchingStoragePokemon = findById(pokedex, pokemon.pokemon); //find our pokemon in the pokedex
     matchingStoragePokemon.captured++; //increment the capture value
-    setPokedex(pokedex); //save it
+    setPokedex(pokedex, POKEDEX); //save it
     return pokedex;
+}
+
+export function addToPersistentStorage(){
+    const permanentPokedex = getPokedex('PERSISTENTPOKEDEX'); 
+    const temporaryPokedex = getPokedex('POKEDEX'); 
+    for (let item of temporaryPokedex){
+        permanentPokedex.captured += item.captured;
+        permanentPokedex.encountered += item.encountered;
+    }
+    console.log(permanentPokedex.captured);
+    const stringyPermanentDex = JSON.stringify(permanentPokedex);
+    setPokedex(stringyPermanentDex, 'PERSISTENTPOKEDEX'); //save it
 }
