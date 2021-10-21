@@ -13,5 +13,8 @@
         "statusBar.debuggingForeground": "#00093D",
         "statusBar.debuggingBackground": "#7B8BE8"
     },
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "cSpell.words": [
+        "POKEDEX"
+    ]
 }

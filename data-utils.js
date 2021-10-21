@@ -5,15 +5,15 @@ let prevArr = [];
 
 export function generateThreePokemon() {
     let currentArr = getRandomPokemonArray();
+
     while (duplicateChecker(currentArr) || currentArr.some(item => compareArrays(prevArr, item))) {
         currentArr = getRandomPokemonArray();
     }
-    console.log(currentArr, prevArr);
 
     prevArr = currentArr;
-    const newArr = currentArr.map(item => {
-        encounterPokemon(pokemonArray[item]);
-        return pokemonArray[item];
+    const newArr = currentArr.map(index => {
+        encounterPokemon(pokemonArray[index]);
+        return pokemonArray[index];
     });
     return newArr;
 }
