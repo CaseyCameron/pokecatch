@@ -1,32 +1,38 @@
 import pokemonArray from './data.js';
 import { encounterPokemon } from './local-storage-utils.js';
 
-export function generateThreePokemon(){
-    let randomArray = getRandomPokemonArray();
-    while (
-        randomArray[0] === randomArray[1]
-        || randomArray[1] === randomArray[2]
-        || randomArray[0] === randomArray[2]
-    ){ //while they aren't unique, get new numbers
-        randomArray = getRandomPokemonArray();
+let prevArr = [];
+
+export function generateThreePokemon() {
+    let currentArr = getRandomPokemonArray();
+    while (duplicateChecker(currentArr) || currentArr.some(item => compareArrays(prevArr, item))) {
+        currentArr = getRandomPokemonArray();
     }
-    const pokemon1 = pokemonArray[randomArray[0]];
-    const pokemon2 = pokemonArray[randomArray[1]];
-    const pokemon3 = pokemonArray[randomArray[2]];
+    console.log(currentArr, prevArr);
 
-    encounterPokemon(pokemon1);
-    encounterPokemon(pokemon2);
-    encounterPokemon(pokemon3);
-
-    return [pokemon1, pokemon2, pokemon3];
+    prevArr = currentArr;
+    const newArr = currentArr.map(item => {
+        encounterPokemon(pokemonArray[item]);
+        return pokemonArray[item];
+    });
+    return newArr;
 }
 
-function getRandomPokemon(){ //get 3 random pokemon
+function getRandomPokemon() { //get 3 random pokemon
     return Math.floor(Math.random() * pokemonArray.length); //is it okay to generate 0? This happens.
 }
 
-function getRandomPokemonArray(){ //get 3 random numbers
-    let randomArray = [0, 1, 2];
-    for (let item of randomArray) randomArray[item] = getRandomPokemon();
-    return randomArray;
+function getRandomPokemonArray() { //get 3 random numbers
+    let currentArr = [0, 1, 2];
+    for (let item of currentArr) currentArr[item] = getRandomPokemon();
+    return currentArr;
+}
+
+function duplicateChecker(arr) {
+    const isDuplicate = arr.some((item, index) => arr.indexOf(item) !== index);
+    return isDuplicate;
+}
+
+function compareArrays(prevArr, num) {
+    return prevArr.includes(num);
 }
